@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment 
 metadata: 
-  name: microservice-deployment 
+  name: webmis-deployment 
 spec: 
   selector: 
     matchLabels: 
-      app: microservice 
+      app: webmis 
   replicas: 2 
   template:
     metadata: 
       labels: 
-        app: microservice 
+        app: webmis 
     spec: 
       containers: 
-      - name: microservice 
-        image: bineet/microservice:#{Build.BuildId}#
+      - name: webmis 
+        image: bineet/webmis:#{Build.BuildId}#
         ports: 
         - containerPort: 5555 
 --- 
@@ -22,10 +22,10 @@ spec:
 kind: Service 
 apiVersion: v1 
 metadata: 
-  name: microservice-service 
+  name: webmis-service 
 spec: 
   selector: 
-    app: microservice 
+    app: webmis 
   ports: 
   - protocol: TCP 
     port: 80 
